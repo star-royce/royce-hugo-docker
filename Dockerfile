@@ -6,8 +6,7 @@ LABEL maintainer=private.royce@gmail.com
 ENV HUGO_VERSION=0.72.0
 ENV HUGO_EXTENDED=_extended
 
-RUN apk add --update git libc6-compat libstdc++ \
-    && apk upgrade
+RUN apk add --upgrade git libc6-compat libstdc++
 
 #RUN apk add --update git libc6-compat libstdc++ \
 #    && apk upgrade \
