@@ -3,16 +3,17 @@ FROM alpine:latest AS builder
 LABEL maintainer=private.royce@gmail.com
 
 
-ENV HUGO_VERSION=0.72.0
-ENV HUGO_EXTENDED=_extended
+# ENV HUGO_VERSION=0.72.0
+# ENV HUGO_EXTENDED=_extended
 
-RUN apk add --upgrade git libc6-compat libstdc++
+RUN apk add --update libc6-compat libstdc++
 
 #RUN apk add --update git libc6-compat libstdc++ \
 #    && apk upgrade \
 #    && apk add --no-cache ca-certificates
 
-ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
+#ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
+COPY /usr/localhugo_extended_0.72.0_Linux-64bit.tar.gz /tmp
 
 RUN tar -xf /tmp/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz -C   /usr/local/bin/
 
