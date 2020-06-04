@@ -56,7 +56,7 @@ WORKDIR /tmp
 
 COPY --from=0 /tmp/caddy /usr/bin/caddy
 
-COPY --from=0 /tmp/blog/public ./public/
+COPY --from=0 /tmp/${GIT_REPOSITORY_NAME}/public ./public/
 
 ADD Caddyfile .
 
