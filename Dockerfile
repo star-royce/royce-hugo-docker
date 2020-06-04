@@ -26,6 +26,7 @@ RUN   mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
+
 #ENV THEME_GIT_REPOSITORY=https://github.com/dillonzq/LoveIt.git
 #ENV THEME_NAME=LoveIt
 
@@ -42,7 +43,7 @@ RUN cd ${GIT_REPOSITORY_NAME}
 #    && cd /tmp/blog/themes \
 #    && git clone ${THEME_GIT_REPOSITORY}
 
-WORKDIR /tmp/blog
+WORKDIR /tmp/${GIT_REPOSITORY_NAME}
 
 #RUN sh -c 'sed -i "s/theme = \".*\"/theme = \"$THEME_NAME\"/" config.toml'
 
