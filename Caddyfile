@@ -1,0 +1,5 @@
+:1880 {
+    root ./public
+    file_server
+}
+
