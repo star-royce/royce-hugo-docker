@@ -27,7 +27,7 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 RUN apk --no-cache add git \
     && mkdir project \
     && git clone ${GIT_REPOSITORY} /tmp/project \
-    && cd /tmp/project/${GIT_REPOSITORY}
+    && cd /tmp/project/${GIT_REPOSITORY} \
     && RUN hugo
 
 FROM alpine:latest as runner
