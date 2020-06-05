@@ -4,7 +4,7 @@ LABEL maintainer=private.royce@gmail.com
 
 ENV CADDY_VERSION =v2.0.0-beta.15
 
-RUN apk add --update curl libc6-compat libstdc++
+RUN apk add --update tar curl libc6-compat libstdc++
 
 ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp
 
