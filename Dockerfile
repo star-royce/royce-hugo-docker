@@ -2,7 +2,7 @@ FROM alpine:latest AS builder
 
 LABEL maintainer=private.royce@gmail.com
 
-RUN apk add --update libc6-compat libstdc++
+RUN apk add --update git libc6-compat libstdc++
 
 #RUN apk add --update git libc6-compat libstdc++ \
 #    && apk upgrade \
