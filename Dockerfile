@@ -19,14 +19,17 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 RUN apk --no-cache add git \
     git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY} \
-    && hugo
+    && hugo \
+    && mv public /tmp \
+    && cd /tmp \
+    && rm -rf ${GIT_REPOSITORY}
 
 FROM alpine:latest as runner
 
 WORKDIR /tmp
 
 COPY --from=0 /tmp/caddy /usr/bin/caddy \
-COPY --from=0 /tmp/${GIT_REPOSITORY_NAME}/public ./public/ \
+COPY --from=0 /tmp/public ./public/ \
 ADD Caddyfile . \
 RUN chmod +x /usr/bin/caddy \
 CMD caddy run -config /tmp/Caddyfile --adapter caddyfile \
