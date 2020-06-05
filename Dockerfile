@@ -21,7 +21,7 @@ ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2
 RUN mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy
 
 WORKDIR /tmp
-COPY ./hugo_extended_0.72.0_Linux-64bit.tar.gz /tmp
+RUN tar -xf hugo_extended_0.72.0_Linux-64bit.tar.gz -C  /usr/local/bin/
 
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
