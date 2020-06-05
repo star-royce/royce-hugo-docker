@@ -5,9 +5,9 @@ LABEL maintainer=private.royce@gmail.com
 RUN apk add --update libc6-compat libstdc++
 
 # 下太慢，改为本地
-COPY caddy2_beta15_linux_amd64 /tmp/caddy
-ADD hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
-RUN rm -rf hugo_extended_0.72.0_Linux-64bit.tar.gz
+COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
+ADD ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
+RUN rm -rf ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz
 
 # 让tmp目录在后续步骤中可用
 WORKDIR /tmp
