@@ -3,25 +3,18 @@ FROM alpine:latest AS builder
 LABEL maintainer=private.royce@gmail.com
 
 ENV CADDY_VERSION =v2.0.0-beta.15
-
-RUN apk add --update tar curl libc6-compat libstdc++
-
-ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp
-
-RUN mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy
-
 ENV HUGO_VERSION=0.72.0
 ENV HUGO_EXTENDED=_extended
 
-# 使用curl命令下载压缩包，然后通过管道传递给tar命令解压。这样我们就不会在我们需要清理的文件系统上留下压缩文件
-RUN curl https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz \
-  | tar -xjC /usr/local/bin/ \
-  && make -C /usr/local/bin/
+RUN apk add --update libc6-compat libstdc++
 
-#RUN apk add --update libc6-compat libstdc++ \
-#    && ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp \
-#    && mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy \
-#    && ADD hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
+ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp
+ADD https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz /tmp
+
+RUN mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy \
+    && tar -xf /tmp/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz -C   /usr/local/bin/ \
+    && rm -rf /tmp/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz
+
 
 # 让tmp目录在后续步骤中可用
 WORKDIR /tmp
