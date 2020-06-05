@@ -17,8 +17,7 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 
 # 拉取最新代码
 RUN apk --no-cache add git \
-    && mkdir project \
-    && git clone ${GIT_REPOSITORY} /tmp \
+    git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY} \
     && hugo
 
