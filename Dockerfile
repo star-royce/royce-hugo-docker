@@ -10,18 +10,21 @@ ADD ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
 RUN rm -rf ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz
 
 # 让tmp目录在后续步骤中可用
-WORKDIR /tmp
+
 
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
 # 拉取最新代码
-RUN apk --no-cache add git \
-    git clone ${GIT_REPOSITORY} \
+RUN apk --no-cache add git
+
+WORKDIR /tmp
+
+RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY} \
     && hugo \
     && mv public /tmp \
-    && cd /tmp \
+    && cd /tmp \`
     && rm -rf ${GIT_REPOSITORY}
 
 FROM alpine:latest as runner
