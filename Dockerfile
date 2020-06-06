@@ -23,7 +23,7 @@ RUN git clone ${GIT_REPOSITORY} \
     && hugo \
     && mv public /tmp \
     && cd /tmp \
-    && rm -rf ${GIT_REPOSITORY_NAME} # 禁用这一步以及之后的缓存
+    && rm -rf ${GIT_REPOSITORY_NAME}
 
 FROM alpine:latest as runner
 
