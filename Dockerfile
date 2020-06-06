@@ -24,7 +24,7 @@ RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY} \
     && hugo \
     && mv public /tmp \
-    && cd /tmp \`
+    && cd /tmp \
     && rm -rf ${GIT_REPOSITORY}
 
 FROM alpine:latest as runner
