@@ -15,8 +15,11 @@ WORKDIR /tmp
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
+# 后续操作不使用缓存
+ARG CACHEBUST=1
+
 # 拉取最新代码
-RUN --no-cache git clone ${GIT_REPOSITORY} \
+RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
     && mv public /tmp \
