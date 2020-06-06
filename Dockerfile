@@ -2,7 +2,7 @@ FROM alpine:latest AS builder
 
 LABEL maintainer=private.royce@gmail.com
 
-RUN apk add --update libc6-compat libstdc++
+RUN apk add --update git libc6-compat libstdc++
 
 # 下太慢，改为本地
 COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
@@ -10,22 +10,18 @@ ADD ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
 RUN rm -rf ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz
 
 # 让tmp目录在后续步骤中可用
-
+WORKDIR /tmp
 
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
 # 拉取最新代码
-RUN apk --no-cache add git
-
-WORKDIR /tmp
-
-RUN git clone ${GIT_REPOSITORY} \
-    && cd /tmp/${GIT_REPOSITORY} \
+RUN --no-cache git clone ${GIT_REPOSITORY} \
+    && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
     && mv public /tmp \
     && cd /tmp \
-    && rm -rf ${GIT_REPOSITORY}
+    && rm -rf ${GIT_REPOSITORY_NAME}
 
 FROM alpine:latest as runner
 
