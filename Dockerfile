@@ -16,7 +16,7 @@ ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
 # git clone这一步开始，不使用缓存
-ADD https://api.github.com/repos/$USER/$REPO/git/refs/heads/$BRANCH version.json
+ADD https://api.github.com/repos/star-royce/royce-hugo-docker/git/refs/heads/master version.json
 # 拉取最新代码
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
