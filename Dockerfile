@@ -30,9 +30,9 @@ FROM alpine:latest as runner
 
 WORKDIR /tmp
 
-COPY --from=0 /tmp/caddy /usr/bin/caddy \
-COPY --from=0 /tmp/public ./public/ \
-ADD Caddyfile . \
-RUN chmod +x /usr/bin/caddy \
-CMD caddy run -config /tmp/Caddyfile --adapter caddyfile \
+COPY --from=0 /tmp/caddy /usr/bin/caddy
+COPY --from=0 /tmp/public ./public/
+ADD Caddyfile .
+RUN chmod +x /usr/bin/caddy
+CMD caddy run -config /tmp/Caddyfile --adapter caddyfile
 EXPOSE 1880
