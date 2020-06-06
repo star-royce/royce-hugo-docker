@@ -2,7 +2,7 @@ FROM alpine:latest AS builder
 
 LABEL maintainer=private.royce@gmail.com
 
-RUN apk add --update libc6-compat libstdc++
+RUN apk add --update git libc6-compat libstdc++
 
 # 下太慢，改为本地
 COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
