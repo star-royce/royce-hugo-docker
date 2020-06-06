@@ -15,16 +15,15 @@ WORKDIR /tmp
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
-# 后续操作不使用缓存
-ARG CACHEBUST=1
-
+# git clone这一步开始，不使用缓存
+ADD https://api.github.com/repos/$USER/$REPO/git/refs/heads/$BRANCH version.json
 # 拉取最新代码
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
     && mv public /tmp \
     && cd /tmp \
-    && rm -rf ${GIT_REPOSITORY_NAME}
+    && rm -rf ${GIT_REPOSITORY_NAME} # 禁用这一步以及之后的缓存
 
 FROM alpine:latest as runner
 
