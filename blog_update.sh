@@ -8,7 +8,7 @@ echo "============================  docker image build... ======================
 docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-hugo-docker .
 
 
-echo "============================ docker none image remove... ============================ "
+#echo "============================ docker none image remove... ============================ "
 # 不加-f, 则基础的build产生的image不会被清除
 #docker images|grep none|awk '{print $3 }'|xargs docker rmi
 
