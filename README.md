@@ -4,6 +4,12 @@ A Docker image for websites built by hugo
 
 ## How to use
 
+### 个人hugo源码仓库(存放着个人博客信息的仓库)
+
+修改 Dockerfile 的内容
+
+- ENV GIT_REPOSITORY
+- ENV GIT_REPOSITORY_NAME
 
 ### build image
 
