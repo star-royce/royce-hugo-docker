@@ -36,5 +36,7 @@ COPY --from=0 /tmp/caddy /usr/bin/caddy
 COPY --from=0 /tmp/public ./public/
 ADD Caddyfile .
 RUN chmod +x /usr/bin/caddy
-CMD --no-cache caddy run -config /tmp/Caddyfile --adapter caddyfile
+# 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
+ARG CACHEBUST=1
+CMD caddy run -config /tmp/Caddyfile --adapter caddyfile
 EXPOSE 1880
