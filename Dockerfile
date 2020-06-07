@@ -4,7 +4,7 @@ LABEL maintainer=private.royce@gmail.com
 
 # 指定使用阿里云国内源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --update git libc6-compat libstdc++
+    && apk add git libc6-compat libstdc++
 
 # 下太慢，改为本地
 COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
