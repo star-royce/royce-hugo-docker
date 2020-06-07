@@ -8,7 +8,7 @@ A Docker image for websites built by hugo
 ### build image
 
 ```
-docker build --build-arg CACHEBUST=$(date +%s) --rm -t hugo-docker .
+docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-hugo-docker .
 ```
 
 ### run container

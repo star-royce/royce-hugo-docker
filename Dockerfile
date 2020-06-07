@@ -3,9 +3,8 @@ FROM alpine:latest AS builder
 LABEL maintainer=private.royce@gmail.com
 
 # 指定使用阿里云国内源
-RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
-
-RUN apk add --update git libc6-compat libstdc++
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
+    && apk add --update git libc6-compat libstdc++
 
 # 下太慢，改为本地
 COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
@@ -17,9 +16,6 @@ WORKDIR /tmp
 
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
-
-RUN git config --global https.proxy http://127.0.0.1:1080
-RUN git config --global https.proxy https://127.0.0.1:1080
 
 # 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
 ARG CACHEBUST=1
