@@ -2,6 +2,9 @@ FROM alpine:latest AS builder
 
 LABEL maintainer=private.royce@gmail.com
 
+# 指定使用国内源 - 中国科技大学
+RUN sed -i 's/dl-cdn.alpinelinux.org/docker.mirrors.ustc.edu.cn/g' /etc/apk/repositories
+
 RUN apk add --update git libc6-compat libstdc++
 
 # 下太慢，改为本地
