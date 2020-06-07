@@ -18,6 +18,9 @@ WORKDIR /tmp
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
 
+RUN git config --global https.proxy http://127.0.0.1:1080
+RUN git config --global https.proxy https://127.0.0.1:1080
+
 # 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
 ARG CACHEBUST=1
 
