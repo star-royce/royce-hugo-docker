@@ -4,7 +4,7 @@ LABEL maintainer=private.royce@gmail.com
 
 # 指定使用阿里云国内源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --update git libc6-compat libstdc++
+    && apk add --update git curl tar libc6-compat libstdc++
 
 ENV CADDY_VERSION =v2.0.0-beta.15
 ENV HUGO_VERSION=0.72.0
