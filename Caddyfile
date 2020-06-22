@@ -1,5 +1,6 @@
-:1880 {
-    root ./public
-    file_server
+aleeblog.site {
+    proxy / http://127.0.0.1:1880 {
+        root ./public
+        file_server
+    }
 }
-
