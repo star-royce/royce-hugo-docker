@@ -4,7 +4,7 @@ LABEL maintainer=private.royce@gmail.com
 
 # 指定使用阿里云国内源
 RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories \
-    && apk add --update git curl tar libc6-compat libstdc++
+    && apk add --update git tar libc6-compat libstdc++
 
 # caddy下载
 ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp
