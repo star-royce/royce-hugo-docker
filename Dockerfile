@@ -38,4 +38,4 @@ ADD Caddyfile .
 RUN chmod +x /usr/bin/caddy
 
 CMD caddy run -config /tmp/Caddyfile --adapter caddyfile
-EXPOSE 1880
+EXPOSE 80

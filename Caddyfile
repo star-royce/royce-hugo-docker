@@ -5,3 +5,8 @@ aleeblog.site {
             file_server
     }
 }
+
+:80 {
+  root ./public
+  file_server
+}
