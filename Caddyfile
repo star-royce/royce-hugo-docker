@@ -1,6 +1,10 @@
 aleeblog.site {
-    proxy / http://127.0.0.1:1880 {
-        root ./public
-        file_server
+    tls private.royce@gmail.com
+    proxy /blog http://127.0.0.1:1880 {
+            root ./public
+            file_server
+    }
+    proxy / mask.com:80 {
+        except /blog
     }
 }
