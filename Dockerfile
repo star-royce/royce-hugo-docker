@@ -7,7 +7,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && apk add --update git curl tar libc6-compat libstdc++
 
 # caddy下载
-ENV CADDY_VERSION =v2.0.0-beta.15
 ADD https://github.com/caddyserver/caddy/releases/download/v2.0.0-beta.15/caddy2_beta15_linux_amd64 /tmp
 RUN mv /tmp/caddy2_beta15_linux_amd64 /tmp/caddy
 
@@ -16,8 +15,7 @@ WORKDIR /tmp
 
 # hugo下载
 ENV HUGO_VERSION=0.72.0
-ENV HUGO_EXTENDED=_extended
-RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz \
+RUN wget https://github.com/gohugoio/hugo/releases/download/v${HUGO_VERSION}/hugo_extended_${HUGO_VERSION}_Linux-64bit.tar.gz \
     && tar -xzf app.tar.gz -C /usr/local/bin && rm -f hugo${HUGO_EXTENDED}_${HUGO_VERSION}_Linux-64bit.tar.gz
 
 ## 下太慢，改为本地
