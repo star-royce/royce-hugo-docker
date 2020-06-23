@@ -7,7 +7,6 @@ RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
     && apk add --update git libc6-compat libstdc++
 
 # 下太慢，改为本地
-COPY ./soft/caddy2_beta15_linux_amd64 /tmp/caddy
 ADD ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz /usr/local/bin/
 RUN rm -rf ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz
 
@@ -28,14 +27,6 @@ RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
 
-FROM alpine:latest as runner
+VOLUME /tmp/public
 
-WORKDIR /tmp
-
-COPY --from=0 /tmp/caddy /usr/bin/caddy
-COPY --from=0 /tmp/public ./public/
-ADD Caddyfile .
-RUN chmod +x /usr/bin/caddy
-
-CMD caddy run -config /tmp/Caddyfile --adapter caddyfile
-EXPOSE 80
+EXPOSE 1880
