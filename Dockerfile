@@ -27,4 +27,9 @@ RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
 
-EXPOSE 1880
+FROM alpine:latest as runner
+
+WORKDIR /tmp
+
+COPY --from=0 /tmp/public ./public/
+EXPOSE 80
