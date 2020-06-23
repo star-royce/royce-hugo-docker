@@ -27,6 +27,4 @@ RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
 
-VOLUME /tmp/public
-
 EXPOSE 1880
