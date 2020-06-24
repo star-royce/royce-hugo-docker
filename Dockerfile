@@ -32,4 +32,4 @@ VOLUME /tmp/static
 
 EXPOSE 1880
 
-CMD ["/bin/bash"]
+CMD  ["echo","hugo build success"]

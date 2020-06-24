@@ -18,7 +18,7 @@ echo "============================ docker none image remove... =================
 docker images|grep none|awk '{print $3 }'|xargs docker rmi
 
 echo "============================ docker run royce-blog...============================ "
-docker run --name royce-blog -d -p 1880:1880 royce-hugo-docker
+docker run --name royce-blog -d -p 1880:1880 royce-blog
 
 echo "============================ docker public download...============================ "
 docker cp royce-blog:/tmp/public /opt/web/royce-blog/
