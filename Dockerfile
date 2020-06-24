@@ -19,16 +19,12 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 # 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
 ARG CACHEBUST=1
 
-VOLUME /tmp/public
+VOLUME /tmp/html/public
 
 # 拉取最新代码
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
-    && mv public /tmp/ \
+    && mv public /tmp/html \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
-
-EXPOSE 1880
-
-CMD  ["echo","hugo build success"]
