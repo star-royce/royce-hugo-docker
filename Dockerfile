@@ -13,7 +13,7 @@ RUN rm -rf ./soft/hugo_extended_0.72.0_Linux-64bit.tar.gz
 # 让tmp目录在后续步骤中可用
 WORKDIR /tmp
 
-VOLUME /tmp/public
+VOLUME /tmp/static
 
 ENV GIT_REPOSITORY=https://github.com/star-royce/royce-hugo.git
 ENV GIT_REPOSITORY_NAME=royce-hugo
@@ -25,7 +25,7 @@ ARG CACHEBUST=1
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
-    && mv public /tmp \
+    && mv public tmp/static/ \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
 

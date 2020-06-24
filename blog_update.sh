@@ -5,7 +5,7 @@ echo "============================ Git Project Update... =======================
 git pull
 
 echo "============================  docker image build... ============================ "
-docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-hugo-docker .
+docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-blog .
 
 echo "============================ docker stop ============================ "
 docker stop royce-blog
