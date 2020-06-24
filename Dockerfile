@@ -29,3 +29,7 @@ RUN git clone ${GIT_REPOSITORY} \
     && rm -rf ${GIT_REPOSITORY_NAME}
 
 VOLUME /tmp/static
+
+EXPOSE 1880
+
+CMD ["/bin/bash"]
