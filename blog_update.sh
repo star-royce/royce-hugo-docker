@@ -21,4 +21,4 @@ echo "============================ docker run royce-blog...=====================
 docker run --name royce-blog -d -p 1880:1880 royce-hugo-docker
 
 echo "============================ docker public download...============================ "
-docker cp /opt/web/royce-blog/ royce-blog:/tmp/public
+docker cp royce-blog:/tmp/public /opt/web/royce-blog/

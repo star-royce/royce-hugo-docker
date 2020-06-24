@@ -1,4 +1,4 @@
-FROM alpine:latest AS builder
+FROM alpine:latest
 
 LABEL maintainer=private.royce@gmail.com
 
@@ -27,9 +27,4 @@ RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
 
-FROM alpine:latest as runner
-
-WORKDIR /tmp
-
-COPY --from=0 /tmp/public ./public/
-EXPOSE 80
+VOLUME /tmp/public
