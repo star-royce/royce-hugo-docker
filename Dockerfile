@@ -19,6 +19,8 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 # 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
 ARG CACHEBUST=1
 
+VOLUME /tmp/static/public
+
 # 拉取最新代码
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
@@ -27,8 +29,6 @@ RUN git clone ${GIT_REPOSITORY} \
     && mv public /tmp/static/ \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
-
-VOLUME /tmp/static
 
 EXPOSE 1880
 
