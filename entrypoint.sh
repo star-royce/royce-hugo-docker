@@ -12,7 +12,7 @@ echo "============================ docker run royce-blog...=====================
 docker run --name royce-blog -d -p 1880:1880 royce-blog
 
 echo "============================ docker public download...============================ "
-docker cp royce-blog:/tmp/public /opt/web/royce-blog/public
+docker cp royce-blog:/tmp/public/ /opt/web/royce-blog/public/
 
 echo "============================ docker stop ============================ "
 docker stop royce-blog
