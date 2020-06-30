@@ -26,6 +26,3 @@ RUN git clone ${GIT_REPOSITORY} \
     && mv public /tmp \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
-
-
-ENTRYPOINT ["entrypoint.sh"]
