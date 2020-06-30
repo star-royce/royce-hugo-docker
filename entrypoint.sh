@@ -6,7 +6,7 @@ echo "============================ Git Project Update... =======================
 git pull
 
 echo "============================  docker image build... ============================ "
-docker build --build-arg CACHEBUST="$0" --rm -t royce-blog .
+docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-blog .
 
 echo "============================ docker run royce-blog...============================ "
 docker run --name royce-blog -d -p 1880:1880 royce-blog
