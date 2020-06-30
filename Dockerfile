@@ -19,12 +19,18 @@ ENV GIT_REPOSITORY_NAME=royce-hugo
 # 这一步开始，不使用缓存, CACHEBUST由build指令传入当前时间
 ARG CACHEBUST=1
 
-VOLUME /tmp/html/public
-
 # 拉取最新代码
 RUN git clone ${GIT_REPOSITORY} \
     && cd /tmp/${GIT_REPOSITORY_NAME} \
     && hugo \
-    && mv public /tmp/html \
+    && mv public /tmp \
     && cd /tmp \
     && rm -rf ${GIT_REPOSITORY_NAME}
+
+FROM alpine:latest as runner
+
+WORKDIR /tmp
+
+COPY --from=0 /tmp/public ./public/
+
+VOLUME /tmp/public
