@@ -6,19 +6,19 @@ echo "============================ Git Project Update... =======================
 git pull
 
 echo "============================  docker image build... ============================ "
-docker build --build-arg CACHEBUST=$(date +%s) --rm -t "$0" .
+docker build --build-arg CACHEBUST=$(date +%s) --rm -t royce-blog .
 
-echo "============================ docker run $0...============================ "
-docker run --name "$0" -d -p 1880:1880 "$0"
+echo "============================ docker run royce-blog...============================ "
+docker run --name royce-blog -d -p 1880:1880 royce-blog
 
 echo "============================ docker public download...============================ "
-docker cp "$0":/tmp/public /opt/web/"$0"/
+docker cp royce-blog:/tmp/public /opt/web/royce-blog/
 
 echo "============================ docker stop ============================ "
-docker stop "$0"
+docker stop royce-blog
 
 echo "============================ docker rm ============================ "
-docker rm "$0"
+docker rm royce-blog
 
 echo "============================ docker none image remove... ============================ "
 # 不加-f, 则基础的build产生的image不会被清除
